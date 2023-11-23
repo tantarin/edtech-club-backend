@@ -5,6 +5,7 @@ import com.bezkoder.spring.security.postgresql.models.News;
 import com.bezkoder.spring.security.postgresql.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/news")
+@RequestMapping("/api/test")
 public class NewsController {
 
     private final NewsService newsService;
@@ -25,7 +27,7 @@ public class NewsController {
         this.newsService = newsService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/news")
     public List<News> list() {
         return newsService.list();
     }
