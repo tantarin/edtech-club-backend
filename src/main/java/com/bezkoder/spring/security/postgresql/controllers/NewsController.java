@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.bezkoder.spring.security.postgresql.config.Routes.PATH_NEWS;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/test")
 public class NewsController {
 
     private final NewsService newsService;
@@ -27,12 +28,12 @@ public class NewsController {
         this.newsService = newsService;
     }
 
-    @GetMapping("/news")
+    @GetMapping(PATH_NEWS)
     public List<News> list() {
         return newsService.list();
     }
 
-    @PostMapping("/list")
+    @PostMapping(PATH_NEWS)
     public void create(@RequestBody NewsCreateRequest request) {
         newsService.create(request);
     }

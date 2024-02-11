@@ -7,11 +7,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static com.bezkoder.spring.security.postgresql.config.Routes.PATH_NEWS;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class NewsControllerTest extends AbstractTestProfileTest {
+class NewsControllerTest extends AbstractTestProfileTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -19,7 +20,7 @@ public class NewsControllerTest extends AbstractTestProfileTest {
     @Test
     void list() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/news/list")
+                        .get(PATH_NEWS)
                         .with(user("admin").password("pass").roles("USER","ADMIN"))
                         .contentType("application/json"))
                 .andDo(print())
@@ -33,7 +34,7 @@ public class NewsControllerTest extends AbstractTestProfileTest {
         request.setContent("content");
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/api/news/list")
+                        .post(PATH_NEWS)
                         .with(user("admin").password("pass").roles("USER","ADMIN"))
                         .content(asJsonString(request))
                         .accept(MediaType.APPLICATION_JSON)
