@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-      - "main"
+      - "master"
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/edtech-app-backend:latest
+          tags: ${{ env.BACKEND_IMAGE }}
 
       - name: Copy deploy file via ssh
         uses: appleboy/scp-action@master
