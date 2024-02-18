@@ -23,12 +23,14 @@ services:
     depends_on:
       - database
     ports:
-      - 8081:8080
+      - 3001:8081
     environment:
       SPRING_APPLICATION_JSON: '{
               "spring.datasource.url"  : "jdbc:postgresql://database:5432/edtech_club",
               "spring.datasource.username" : "postgres",
               "spring.datasource.password" : "1234",
               "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
-              "spring.jpa.hibernate.ddl-auto" : "update"
+              "spring.jpa.hibernate.ddl-auto" : "update",
+              "server.port": "3001",
+              "server.address": "0.0.0.0"
             }'
