@@ -17,7 +17,7 @@ public class Ads {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "header", length = 255)
+    @Column(name = "header", length = 1000)
     private String header;
 
     @Column(name = "content", columnDefinition = "TEXT")

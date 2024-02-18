@@ -18,6 +18,7 @@ public class News {
 
     private String header;
 
+    @Column(name = "content", length = 1000)
     private String content;
 
     private Date date;

@@ -9,4 +9,4 @@ COPY pom.xml .
 
 RUN ./mvnw package
 
-EXPOSE 8444
+EXPOSE 3001
