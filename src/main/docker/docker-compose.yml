@@ -34,3 +34,15 @@ services:
               "server.port": "3001",
               "server.address": "0.0.0.0"
             }'
+
+  frontend:
+    container_name: frontend
+    image: frontend
+    build: .
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: [ "npm", "start", "--force" ]
