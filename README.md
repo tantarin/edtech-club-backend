@@ -4,9 +4,9 @@
 * Spring Boot
 * Postgres
 
-1. http://localhost:3000/register
+1.POST /register
 регистрация пользователя
-2. http://localhost:3000/login вход
+2. POST /login вход
 
 тестовые данные: логин test, пароль 123456
 
