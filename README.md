@@ -15,3 +15,5 @@
 5. http://localhost:3000/home события клуба
 6. http://localhost:3000/ads поиск команды
 7. http://localhost:3000/addNews добавить объявление
+
+   ## Как запустить проект
