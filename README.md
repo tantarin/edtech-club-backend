@@ -1,3 +1,8 @@
+# Веб-сервис для клуба "EdTech Startup Club" РГПУ им. А. И. Герцена
+Стек: 
+* Java
+* Spring Boot
+* Postgres
 
 1. http://localhost:3000/register
 регистрация пользователя
