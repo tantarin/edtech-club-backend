@@ -4,7 +4,7 @@
 * Spring Boot
 * Postgres
 
-1.POST /register
+1. POST /register
 регистрация пользователя
 2. POST /login вход
 
