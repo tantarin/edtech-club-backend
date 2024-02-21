@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/edtech:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
