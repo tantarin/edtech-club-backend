@@ -1,7 +1,9 @@
 # Веб-сервис для клуба "EdTech Startup Club" РГПУ им. А. И. Герцена
 Стек: 
-* Java
+* JDK 17+
+* Maven 3+
 * Spring Boot
+* JWT
 * Postgres
 
 1. POST /register
