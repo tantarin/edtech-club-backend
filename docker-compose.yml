@@ -24,7 +24,6 @@ services:
     image: 'tarinskaya/backend:latest'
     build:
       context: docker
-    container_name: backend
     restart: on-failure
     depends_on:
       - database
@@ -44,8 +43,7 @@ services:
       - fullstack
 
   frontend:
-    container_name: frontend
-    image: frontend
+    image: 'tarinskaya/frontend:latest'
     build: docker
     ports:
       - 3000:3000
