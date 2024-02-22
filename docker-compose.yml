@@ -15,13 +15,16 @@ services:
       - 'POSTGRES_DB=edtech_club'
       - 'POSTGRES_PASSWORD=1234'
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - database_postgres:/var/lib/postgresql/data
+    networks:
+      - fullstack
 
   backend:
     image: 'tarinskaya/backend:latest'
     build:
       context: docker
     container_name: backend
+    restart: on-failure
     depends_on:
       - database
     ports:
@@ -36,6 +39,8 @@ services:
               "server.port": "8099",
               "server.address": "0.0.0.0"
             }'
+    networks:
+      - fullstack
 
   frontend:
     container_name: frontend
@@ -50,4 +55,9 @@ services:
     command: [ "npm", "start"]
 
 volumes:
-  postgres-data:
+  api:
+  database_postgres:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  fullstack:
