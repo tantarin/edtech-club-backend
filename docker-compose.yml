@@ -16,14 +16,14 @@ services:
       - 'POSTGRES_PASSWORD=1234'
 
   backend:
-    image: 'tarinskaya/edtech-app-backend:latest'
+    image: 'tarinskaya/backend:latest'
     build:
-      context: .
-    container_name: app
+      context: docker
+    container_name: backend
     depends_on:
       - database
     ports:
-      - 3001:8081
+      - 8099:8099
     environment:
       SPRING_APPLICATION_JSON: '{
               "spring.datasource.url"  : "jdbc:postgresql://database:5432/edtech_club",
@@ -31,14 +31,14 @@ services:
               "spring.datasource.password" : "1234",
               "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
               "spring.jpa.hibernate.ddl-auto" : "update",
-              "server.port": "3001",
+              "server.port": "8099",
               "server.address": "0.0.0.0"
             }'
 
   frontend:
     container_name: frontend
     image: frontend
-    build: .
+    build: docker
     ports:
       - 3000:3000
     stdin_open: true
