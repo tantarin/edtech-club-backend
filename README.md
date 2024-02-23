@@ -12,11 +12,11 @@
 
 тестовые данные: логин test, пароль 123456
 
-3. http://localhost:3000/profile профиль пользователя
-4. http://localhost:3000/about о клубе
-5. http://localhost:3000/home события клуба
-6. http://localhost:3000/ads поиск команды
-7. http://localhost:3000/addNews добавить объявление
+3. GET /profile профиль пользователя
+4. GET /about о клубе
+5. GET /news события клуба
+6. GET /ads поиск команды
+7. POST /addNews добавить объявление
 
    ## Как запустить проект
 
