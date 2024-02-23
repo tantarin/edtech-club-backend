@@ -22,8 +22,6 @@ services:
 
   backend:
     image: 'tarinskaya/backend:latest'
-    build:
-      context: docker
     restart: on-failure
     depends_on:
       - database
