@@ -6,6 +6,8 @@ import edtech.models.User;
 import edtech.repository.AdsRepository;
 import edtech.repository.UserRepository;
 import edtech.security.services.UserDetailsImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,8 @@ import java.util.List;
 
 @Service
 public class AdsService {
+    Logger logger = LoggerFactory.getLogger(AdsService.class);
+
     private final AdsRepository adsRepository;
     private final UserRepository userRepository;
 
@@ -27,11 +31,13 @@ public class AdsService {
     }
 
     public List<Ads> list() {
+        logger.info("LISTLISTLIST");
         var ads =  adsRepository.findAll();
         return ads;
     }
 
     public void create(AdsCreateRequest request) {
+        logger.info("CREATE {}", request.getHeader());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         User user = userRepository.findByUsername(userDetails.getUsername())
