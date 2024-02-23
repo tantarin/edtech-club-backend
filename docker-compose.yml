@@ -44,7 +44,7 @@ services:
 
   frontend:
     image: 'tarinskaya/frontend:latest'
-    build: docker
+    build: .
     ports:
       - 3000:3000
     stdin_open: true
@@ -57,6 +57,5 @@ volumes:
   api:
   database_postgres:
 
-# Networks to be created to facilitate communication between containers
 networks:
   fullstack:
