@@ -59,9 +59,9 @@ public class WebSecurityConfig {
     http.authorizeHttpRequests(auth -> auth
                     .requestMatchers("/", "/api/auth/**").permitAll()
                     .requestMatchers("/", "/api/test/**").permitAll()
+                    .requestMatchers("/", "/error/**").permitAll()
                     .anyRequest().authenticated())
             .httpBasic(withDefaults())
-            .formLogin(withDefaults())
             .csrf(AbstractHttpConfigurer::disable);
     return http.build();
   }

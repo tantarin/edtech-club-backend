@@ -9,6 +9,7 @@ import edtech.security.services.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,22 +32,25 @@ public class AdsService {
     }
 
     public List<Ads> list() {
-        logger.info("LISTLISTLIST");
-        var ads =  adsRepository.findAll();
-        return ads;
+            var ads =  adsRepository.findAll();
+            return ads;
     }
 
     public void create(AdsCreateRequest request) {
         logger.info("CREATE {}", request.getHeader());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) auth.getPrincipal();
-        User user = userRepository.findByUsername(userDetails.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + userDetails.getUsername()));
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetails =
+                    (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userRepository.findByUsername(userDetails.getUsername())
+                    .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + userDetails.getUsername()));
+            logger.info("LISTLISTLIST2" + user.getUsername());
+        }
 
         Ads ads = new Ads();
         ads.setContent(request.getContent());
         ads.setHeader(request.getHeader());
-        ads.setUser(user);
+        ads.setUser(userRepository.findByUsername("test").get());
         adsRepository.save(ads);
     }
 }
