@@ -22,6 +22,7 @@ services:
 
   backend:
     image: 'tarinskaya/backend:latest'
+    platform: linux/amd64
     restart: on-failure
     depends_on:
       - database
@@ -42,6 +43,7 @@ services:
 
   frontend:
     image: 'tarinskaya/frontend:latest'
+    platform: linux/amd64
     ports:
       - 3000:3000
     stdin_open: true
