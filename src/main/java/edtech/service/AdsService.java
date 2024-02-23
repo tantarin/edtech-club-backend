@@ -5,7 +5,12 @@ import edtech.models.Ads;
 import edtech.models.User;
 import edtech.repository.AdsRepository;
 import edtech.repository.UserRepository;
+import edtech.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,13 +32,15 @@ public class AdsService {
     }
 
     public void create(AdsCreateRequest request) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        User user = userRepository.findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + userDetails.getUsername()));
+
         Ads ads = new Ads();
         ads.setContent(request.getContent());
         ads.setHeader(request.getHeader());
-
-        User user = new User();
-        user.setId(16L);
-        ads.setUser(userRepository.getById(16L));
+        ads.setUser(user);
         adsRepository.save(ads);
     }
 }

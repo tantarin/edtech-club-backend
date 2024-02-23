@@ -19,7 +19,6 @@ import static edtech.config.Routes.PATH_NEWS;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/test")
 public class AdsController {
 
     private final AdsService adsService;
@@ -29,7 +28,7 @@ public class AdsController {
         this.adsService = adsService;
     }
 
-    @GetMapping("/ads")
+    @GetMapping(PATH_ADS)
     public List<Ads> list() {
         return adsService.list();
     }
