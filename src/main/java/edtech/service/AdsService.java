@@ -1,10 +1,10 @@
 package edtech.service;
 
 import edtech.dto.AdsCreateRequest;
-import edtech.dto.NewsCreateRequest;
 import edtech.models.Ads;
-import edtech.models.News;
+import edtech.models.User;
 import edtech.repository.AdsRepository;
+import edtech.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +13,12 @@ import java.util.List;
 @Service
 public class AdsService {
     private final AdsRepository adsRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public AdsService(AdsRepository adsRepository) {
+    public AdsService(AdsRepository adsRepository, UserRepository userRepository) {
         this.adsRepository = adsRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Ads> list() {
@@ -28,6 +30,10 @@ public class AdsService {
         Ads ads = new Ads();
         ads.setContent(request.getContent());
         ads.setHeader(request.getHeader());
+
+        User user = new User();
+        user.setId(16L);
+        ads.setUser(userRepository.getById(16L));
         adsRepository.save(ads);
     }
 }
