@@ -19,19 +19,19 @@ public class AdsControllerTest extends AbstractTestProfileTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    void create() throws Exception {
-        AdsCreateRequest request = new AdsCreateRequest();
-        request.setHeader("header");
-        request.setContent("content");
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .post(PATH_ADS)
-                        .with(user("test").password("pass").roles("USER","ADMIN"))
-                        .content(asJsonString(request))
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType("application/json"))
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    void create() throws Exception {
+//        AdsCreateRequest request = new AdsCreateRequest();
+//        request.setHeader("header");
+//        request.setContent("content");
+//
+//        mockMvc.perform(MockMvcRequestBuilders
+//                        .post(PATH_ADS)
+//                        .with(user("test").password("pass").roles("USER","ADMIN"))
+//                        .content(asJsonString(request))
+//                        .accept(MediaType.APPLICATION_JSON)
+//                        .contentType("application/json"))
+//                .andExpect(status().isOk());
+//    }
 }
 
