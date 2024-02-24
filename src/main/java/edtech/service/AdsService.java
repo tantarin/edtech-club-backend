@@ -9,6 +9,7 @@ import edtech.security.services.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,7 +51,7 @@ public class AdsService {
         Ads ads = new Ads();
         ads.setContent(request.getContent());
         ads.setHeader(request.getHeader());
-        ads.setUser(userRepository.findByUsername("test").get());
+        ads.setUser(userRepository.findTopBy(Sort.by(Sort.Direction.ASC, "name")));
         adsRepository.save(ads);
     }
 }
