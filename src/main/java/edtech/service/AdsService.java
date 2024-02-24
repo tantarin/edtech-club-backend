@@ -40,13 +40,13 @@ public class AdsService {
     public void create(AdsCreateRequest request) {
         logger.info("CREATE {}", request.getHeader());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            UserDetails userDetails =
-                    (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User user = userRepository.findByUsername(userDetails.getUsername())
-                    .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + userDetails.getUsername()));
-            logger.info("LISTLISTLIST2" + user.getUsername());
-        }
+//        if (!(auth instanceof AnonymousAuthenticationToken)) {
+//            UserDetails userDetails =
+//                    (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            User user = userRepository.findByUsername(userDetails.getUsername())
+//                    .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + userDetails.getUsername()));
+//            logger.info("LISTLISTLIST2" + user.getUsername());
+//        }
 
         Ads ads = new Ads();
         ads.setContent(request.getContent());
