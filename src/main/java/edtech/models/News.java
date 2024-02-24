@@ -13,7 +13,8 @@ import java.util.Date;
 public class News {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "news_id_seq", sequenceName = "news_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "news_id_seq")
     private Long id;
 
     private String header;
