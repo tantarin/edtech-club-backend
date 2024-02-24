@@ -51,7 +51,7 @@ public class AdsService {
         Ads ads = new Ads();
         ads.setContent(request.getContent());
         ads.setHeader(request.getHeader());
-        ads.setUser(userRepository.findTopBy(Sort.by(Sort.Direction.ASC, "name")));
+        ads.setUser(userRepository.findTopBy(Sort.by(Sort.Direction.ASC, "username")));
         adsRepository.save(ads);
     }
 }
