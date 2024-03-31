@@ -1,5 +1,6 @@
 package edtech.service;
 
+import edtech.repository.NewsRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -13,12 +14,19 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
 public class FilesStorageService {
 
+    private final NewsRepository newsRepository;
+
     private final Path root = Paths.get("uploads");
+
+    public FilesStorageService(NewsRepository newsRepository) {
+        this.newsRepository = newsRepository;
+    }
 
     @PostConstruct
     public void init() {
@@ -30,8 +38,10 @@ public class FilesStorageService {
     }
 
     public void save(MultipartFile file) {
+        Long lastId = newsRepository.findFirstByOrderByIdDesc().getId();
+        String extension = getExtensionByStringHandling(file.getOriginalFilename()).get();
         try {
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), this.root.resolve(lastId + "." + extension));
         } catch (Exception e) {
             if (e instanceof FileAlreadyExistsException) {
                 throw new RuntimeException("A file of that name already exists.");
@@ -66,5 +76,11 @@ public class FilesStorageService {
         } catch (IOException e) {
             throw new RuntimeException("Could not load the files!");
         }
+    }
+
+    public Optional<String> getExtensionByStringHandling(String filename) {
+        return Optional.ofNullable(filename)
+                .filter(f -> f.contains("."))
+                .map(f -> f.substring(filename.lastIndexOf(".") + 1));
     }
 }

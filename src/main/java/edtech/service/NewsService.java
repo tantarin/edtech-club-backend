@@ -26,11 +26,11 @@ public class NewsService {
         return news;
     }
 
-    public void create(NewsCreateRequest request) {
+    public Long create(NewsCreateRequest request) {
         News news = new News();
         news.setContent(request.getContent());
         news.setHeader(request.getHeader());
         news.setDate(LocalDate.now());
-        newsRepository.save(news);
+        return newsRepository.save(news).getId();
     }
 }

@@ -49,8 +49,8 @@ public class NewsController {
     }
 
     @PostMapping(PATH_NEWS)
-    public void create(@RequestBody NewsCreateRequest request) {
-        newsService.create(request);
+    public Long create(@RequestBody NewsCreateRequest request) {
+        return newsService.create(request);
     }
 
     @PostMapping(PATH_NEWS_IMAGE)
