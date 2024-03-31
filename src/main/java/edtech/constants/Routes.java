@@ -1,4 +1,4 @@
-package edtech.config;
+package edtech.constants;
 
 public final class Routes {
     public static final String PATH_NEWS = "/api/test/news";

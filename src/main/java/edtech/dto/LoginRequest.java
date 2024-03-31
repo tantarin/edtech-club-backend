@@ -1,4 +1,4 @@
-package edtech.payload.request;
+package edtech.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

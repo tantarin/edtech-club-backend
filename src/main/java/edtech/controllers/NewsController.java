@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static edtech.config.Routes.PATH_NEWS;
+import static edtech.constants.Routes.PATH_NEWS;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

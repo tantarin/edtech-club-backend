@@ -1,5 +1,6 @@
-package edtech;
+package edtech.controllers;
 
+import edtech.AbstractTestProfileTest;
 import edtech.dto.NewsCreateRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static edtech.config.Routes.PATH_NEWS;
+import static edtech.constants.Routes.PATH_NEWS;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

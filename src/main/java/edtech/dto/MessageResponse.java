@@ -1,4 +1,4 @@
-package edtech.payload.response;
+package edtech.dto;
 
 public class MessageResponse {
   private String message;

@@ -4,10 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootSecurityPostgresqlApplication {
-
+public class SpringBootEdtechApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootSecurityPostgresqlApplication.class, args);
+		SpringApplication.run(SpringBootEdtechApplication.class, args);
 	}
-
 }

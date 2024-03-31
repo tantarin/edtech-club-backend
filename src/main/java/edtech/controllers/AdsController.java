@@ -1,7 +1,6 @@
 package edtech.controllers;
 
 import edtech.dto.AdsCreateRequest;
-import edtech.dto.NewsCreateRequest;
 import edtech.models.Ads;
 import edtech.service.AdsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +8,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static edtech.config.Routes.PATH_ADS;
-import static edtech.config.Routes.PATH_NEWS;
+import static edtech.constants.Routes.PATH_ADS;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
