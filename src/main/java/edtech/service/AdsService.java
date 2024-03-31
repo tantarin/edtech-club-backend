@@ -38,6 +38,7 @@ public class AdsService {
     }
 
     public void create(AdsCreateRequest request) {
+        logger.error("--------------------------------------------------------------------------------------------");
         logger.info("CREATE {}", request.getHeader());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        if (!(auth instanceof AnonymousAuthenticationToken)) {

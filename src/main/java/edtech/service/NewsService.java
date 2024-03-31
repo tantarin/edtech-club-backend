@@ -6,7 +6,10 @@ import edtech.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import static java.time.LocalTime.now;
 
 @Service
 public class NewsService {
@@ -27,6 +30,7 @@ public class NewsService {
         News news = new News();
         news.setContent(request.getContent());
         news.setHeader(request.getHeader());
+        news.setDate(LocalDate.now());
         newsRepository.save(news);
     }
 }
