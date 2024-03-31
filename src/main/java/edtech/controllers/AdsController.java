@@ -40,8 +40,7 @@ public class AdsController {
     }
 
     @DeleteMapping(PATH_ADS_ID)
-    public ResponseEntity delete(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         adsService.deleteById(id);
-        return ResponseEntity.ok().build();
     }
 }
