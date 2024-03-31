@@ -55,4 +55,8 @@ public class AdsService {
         ads.setUser(userRepository.findTopBy(Sort.by(Sort.Direction.ASC, "username")));
         adsRepository.save(ads);
     }
+
+    public void deleteById(Long id) {
+        adsRepository.deleteById(id);
+    }
 }
