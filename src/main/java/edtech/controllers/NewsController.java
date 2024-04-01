@@ -1,6 +1,7 @@
 package edtech.controllers;
 
 import edtech.dto.NewsCreateRequest;
+import edtech.dto.NewsResponse;
 import edtech.models.News;
 import edtech.service.FilesStorageService;
 import edtech.service.NewsService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 import static edtech.constants.Routes.PATH_NEWS;
@@ -44,7 +48,7 @@ public class NewsController {
     }
 
     @GetMapping(PATH_NEWS)
-    public List<News> list() {
+    public List<NewsResponse> list() throws IOException {
         return newsService.list();
     }
 
@@ -57,13 +61,5 @@ public class NewsController {
     public void uploadFile(@RequestParam("file") MultipartFile file) {
         logger.error("-------------- " + file.getName());
         storageService.save(file);
-    }
-
-    @GetMapping("/files/{filename:.+}")
-    @ResponseBody
-    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-        Resource file = storageService.load(filename);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 }
