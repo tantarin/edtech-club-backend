@@ -1,10 +1,13 @@
 package edtech.dto;
 
+import java.util.List;
+
 public class AdsResponse {
     private Long id;
     private String header;
     private String content;
     private String userLastName;
+    private List<String> tags;
 
     public Long getId() {
         return id;
@@ -36,5 +39,13 @@ public class AdsResponse {
 
     public void setUserLastName(String userLastName) {
         this.userLastName = userLastName;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }

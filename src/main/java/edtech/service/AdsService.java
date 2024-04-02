@@ -1,6 +1,7 @@
 package edtech.service;
 
 import edtech.dto.AdsCreateRequest;
+import edtech.dto.AdsResponse;
 import edtech.models.Ads;
 import edtech.models.User;
 import edtech.repository.AdsRepository;
@@ -17,7 +18,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AdsService {
@@ -32,10 +35,23 @@ public class AdsService {
         this.userRepository = userRepository;
     }
 
-    public List<Ads> list() {
-            var ads =  adsRepository.findAll();
-            return ads;
+    public List<AdsResponse> list() {
+        List<AdsResponse> adsList = new ArrayList<>();
+        var ads = adsRepository.findAll();
+        for (var ad : ads) {
+            AdsResponse adsResponse = new AdsResponse();
+            adsResponse.setId(ad.getId());
+            adsResponse.setContent(ad.getContent());
+            adsResponse.setHeader(ad.getHeader());
+            List<String> names = ad.getTags().stream()
+                    .map(adTag -> adTag.getTags().getName())
+                    .collect(Collectors.toList());
+            adsResponse.setTags(names);
+            adsList.add(adsResponse); // Добавляем созданный объект AdsResponse в список
+        }
+        return adsList;
     }
+
 
     public void create(AdsCreateRequest request) {
         logger.error("--------------------------------------------------------------------------------------------");

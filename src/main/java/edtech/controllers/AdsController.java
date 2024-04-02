@@ -1,6 +1,7 @@
 package edtech.controllers;
 
 import edtech.dto.AdsCreateRequest;
+import edtech.dto.AdsResponse;
 import edtech.models.Ads;
 import edtech.service.AdsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class AdsController {
     }
 
     @GetMapping(PATH_ADS)
-    public List<Ads> list() {
+    public List<AdsResponse> list() {
         return adsService.list();
     }
 
