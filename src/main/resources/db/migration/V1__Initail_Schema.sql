@@ -72,14 +72,6 @@ CREATE SEQUENCE public.refreshtoken_id_seq
     CACHE 1;
 
 
-CREATE SEQUENCE public.refreshtoken_seq
-    START WITH 0
-    INCREMENT BY 50
-    MINVALUE 0
-    MAXVALUE 10000
-    CACHE 1
-    CYCLE;
-
 CREATE TABLE public.users (
                               id bigint PRIMARY KEY,
                               email character varying(50),
